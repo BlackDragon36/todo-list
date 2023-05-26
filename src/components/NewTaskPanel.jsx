@@ -4,19 +4,12 @@ import {useColoredBtns} from "../hooks/useColoredBtns";
 import {useSelectedColor} from "../hooks/useSelectedColor";
 
 
-function NewTaskPanel({tasks, setTasks}) {
+function NewTaskPanel({addTask}) {
 
   const {taskText, setTaskText} = useTaskText();
   const {coralBtn, limeBtn, cyanBtn, yellowBtn} = useColoredBtns();
   const {selectedColor, setSelectedColor} = useSelectedColor();
   const colors = [coralBtn, limeBtn, cyanBtn, yellowBtn];
-
-  function addTask(e) {
-    if(taskText !== "") {
-      setTasks([...tasks, {text: taskText, color: selectedColor}]);
-      setTaskText("");
-    }
-  }
 
   function selectColor(e) {
     colors.forEach(color => {
@@ -34,7 +27,7 @@ function NewTaskPanel({tasks, setTasks}) {
           <div className="colorBtn cyan" onClick={(e) => {selectColor(e); setSelectedColor("cyan")}} ref={cyanBtn}></div>
           <div className="colorBtn yellow" onClick={(e) => {selectColor(e); setSelectedColor("yellow")}} ref={yellowBtn}></div>
         </div>
-      <button className="addTaskBtn" onClick={addTask}>Add Task</button>
+      <button className="addTaskBtn" onClick={() => {addTask(taskText, selectedColor); setTaskText("");}}>Add Task</button>
     </div>
   )
 }

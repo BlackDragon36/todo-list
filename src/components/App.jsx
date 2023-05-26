@@ -4,11 +4,11 @@ import NewTaskPanel from './NewTaskPanel';
 import {useTasks} from "../hooks/useTasks";
 
 function App() {
-  const {tasks, setTasks} = useTasks();
+  const {tasks, setTasks, addTask} = useTasks();
 
   return (
     <>
-      <NewTaskPanel tasks={tasks} setTasks={setTasks}/>
+      <NewTaskPanel addTask={addTask}/>
       <Tasks tasks={tasks} setTasks={setTasks}/>
     </>
   );
